@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Rza_valeria.Components;
 using Rza_valeria.Models;
+using Rza_valeria.Services;
+
+
 namespace Rza_valeria
 {
     public class Program
@@ -13,6 +16,7 @@ namespace Rza_valeria
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
+            builder.Services.AddScoped<CustomerService>();
             builder.Services.AddDbContext<TlS2301890RzaContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("MySqlConnection"), new MySqlServerVersion(new Version(8, 0, 29))));
 
             var app = builder.Build();

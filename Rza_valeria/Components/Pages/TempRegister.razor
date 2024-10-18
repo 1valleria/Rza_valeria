@@ -1,0 +1,53 @@
+﻿@using Rza_valeria.Services
+@using Rza_valeria.Models
+@inject CustomerService CustomerService
+@page "/tr"
+
+
+<h3>TempRegister</h3>
+<div>
+    <label>Username</label>
+    <input @bind=newCustomer.Username>
+</div>
+<div>
+    <label>First Name</label>
+    <input @bind=newCustomer.FirstName>
+</div>
+<div>
+    <label>Last Name</label>
+    <input @bind=newCustomer.LastName>
+</div>
+<div>
+    <label>Email</label>
+    <input @bind=newCustomer.Email>
+</div>
+<div>
+    <label>Password</label>
+    <input @bind=newCustomer.Password>
+</div>
+<div>
+    <label>Post Code</label>
+    <input @bind=newCustomer.Postcode>
+</div>
+<div>
+    <label>Phone Number</label>
+    <input @bind=newCustomer.PhoneNumber>
+</div>
+<div>
+    <label>Date of Birth</label>
+    <input @bind=newCustomer.DateOfBirth>
+</div>
+<div>
+    <label>Date of Birth</label>
+    <input @bind=newCustomer.DateOfBirth>
+</div>
+<button @onclick=@RegisterCustomer>Register</button>
+
+
+@code {
+    private Customer newCustomer=new Customer();
+    private async Task RegisterCustomer()
+    {
+        await CustomerService.AddCustomerAsync(newCustomer);
+    }
+}
