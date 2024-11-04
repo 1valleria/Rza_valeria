@@ -1,0 +1,48 @@
+﻿@page "/login"
+@using Rza_valeria.Models
+@using Rza_valeria.Services
+
+@inject CustomerService CustomerService
+@inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
+
+
+<h3>Login</h3>
+
+<EditForm Model="newCustomer" OnValidSubmit="HandleValidSubmit" FormName="LoginForm">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label>Username:</label>
+        <InputText @bind-Value="newCustomer.Username" />
+    </div>
+
+    <div>
+        <label>Password:</label>
+        <InputText @bind-Value="password" typeof="Password" />
+    </div>
+
+    <button type="submit">Register</button>
+</EditForm>
+
+
+@code {
+    private Customer newCustomer = new Customer();
+    private string password;
+
+    private async Task HandleValidSubmit()
+    {
+        newCustomer.Password = password;
+        newCustomer = await CustomerService.LogIn(newCustomer);
+        if (newCustomer == null)
+        {
+            Console.WriteLine("could not log in");
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/account");
+        }
+    }
+}
