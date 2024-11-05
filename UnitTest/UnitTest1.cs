@@ -2,6 +2,7 @@ using Rza_valeria.Components;
 using Rza_valeria.Services;
 using Rza_valeria.Models;
 using Microsoft.EntityFrameworkCore;
+using Rza_valeria.wwwroot.Utilities;
 
 
 
@@ -36,7 +37,37 @@ namespace UnitTest
                 c => c.Username == "admin");
             Assert.NotNull(result);
         }
-
+        [Test]
+        public async Task Test2()
+        {
+            Customer tempCustomer = new Customer();
+            tempCustomer.Username = "admin";
+            tempCustomer.Password = PasswordUtils.HashPassword("admin");
+            await _customerService.AddCustomerAsync(tempCustomer);
+            var result = await _context.Customers.FirstOrDefaultAsync(c => c.Username == "not admin");
+            Assert.Null(result);
+        }
+        [Test]
+        public async Task Test3()
+        {
+            Customer tempCustomer = new Customer();
+            tempCustomer.Username = "admin";
+            tempCustomer.Password = PasswordUtils.HashPassword("admin");
+            await _customerService.AddCustomerAsync(tempCustomer);
+            var result = await _customerService.LogIn(tempCustomer);
+            Assert.NotNull(result);
+        }
+        [Test]
+        public async Task Test4()
+        {
+            Customer tempCustomer = new Customer();
+            tempCustomer.Username = "admin";
+            tempCustomer.Password = PasswordUtils.HashPassword("admin");
+            await _customerService.AddCustomerAsync(tempCustomer);
+            tempCustomer.Username = "not admin";
+            var result = await _customerService.LogIn(tempCustomer);
+            Assert.Null(result);
+        }
         [TearDown]
         public void TearDown() 
         {
