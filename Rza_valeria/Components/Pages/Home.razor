@@ -1,7 +1,44 @@
 ﻿@page "/"
+@using Rza_valeria.Components
+@using Rza_valeria.Utilities
+@inject UserSession UserSession
+@inject NavigationManager NavigationManager
+
+@rendermode InteractiveServer
 
 <PageTitle>Home</PageTitle>
 
 <h1>Hello, world!</h1>
 
-Welcome to your new app.
+<button class="cool-button" @onclick="ShowDialog">Open Dialog</button>
+
+<Dialog Title="Hello World!" Opened="dialogShown" CloseButtonClicked="@(() => dialogShown = false)">
+    <BodyContent>
+        <p style="font-size: 13px;">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Vero fugit vitae veritatis error perspiciatis ea eum nihil, illum ut asperiores amet quos quis eos odio laudantium ipsam ullam quidem aut cumque accusantium! Possimus at perferendis consequatur doloremque ad dolore fugiat, explicabo, veniam facere in sed accusantium ex doloribus minus obcaecati vitae tempore exercitationem dicta quia illo, sit culpa fuga. Porro quaerat quae eligendi eius voluptates! Nihil, obcaecati placeat. Dolore dicta odit odio quae libero quod cupiditate molestiae vero magnam. Fugiat mollitia nihil quae, odio possimus animi hic voluptas nesciunt minus quo unde tempora consectetur in eveniet maxime cupiditate eligendi nemo.
+        </p>
+    </BodyContent>
+</Dialog>
+
+@if (UserSession.UserId == 0)
+{
+    <h1>you need to log in</h1>
+}
+else
+{
+    <h1>your userid is @UserSession.UserId</h1>
+    <button onclick=@Modify>Modify your account</button>
+}
+
+@code {
+    private bool dialogShown = false;
+
+    private void ShowDialog()
+    {
+        dialogShown = true;
+    }
+    private void Modify()
+    {
+        NavigationManager.NavigateTo("/modify");
+    }
+}

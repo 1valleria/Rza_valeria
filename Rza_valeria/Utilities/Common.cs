@@ -3,15 +3,9 @@ using System.Security.Cryptography;
 
 namespace Rza_valeria.Utilities
 {
-
-    public class UserSession 
-    {
-        public int userId { get; set; }
-    }
-
     public static class PasswordUtils
     {
-        #region hidden
+
         private static readonly char[] specialCharacters = new char[]
         {
             '!','£','$','%','^','&','*','(',')','-','=','_','+','[',']','{','}',';',':','@','#','~','<','>'
@@ -61,8 +55,9 @@ namespace Rza_valeria.Utilities
             }
             return valid;
         }
-        #endregion
+    
     }
+
     public class UserSession
     {
         public int UserId { get; set; }

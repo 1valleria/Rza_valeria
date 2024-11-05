@@ -1,15 +1,14 @@
 ﻿@page "/login"
 @using Rza_valeria.Models
-@using Rza_valeria.Services
 @using Rza_valeria.Utilities
-
+@using Rza_valeria.Services
 @inject CustomerService CustomerService
 @inject NavigationManager NavigationManager
 @inject UserSession UserSession
+
 @rendermode InteractiveServer
 
-
-<h3>Login</h3>
+<h3>Log In</h3>
 
 <EditForm Model="newCustomer" OnValidSubmit="HandleValidSubmit" FormName="LoginForm">
     <DataAnnotationsValidator />
@@ -22,20 +21,28 @@
 
     <div>
         <label>Password:</label>
-        <InputText @bind-Value="password" typeof="Password" />
+        <InputText @bind-Value="password" type="password" />
     </div>
 
     <button type="submit">Register</button>
 </EditForm>
 
-
 @code {
     private Customer newCustomer = new Customer();
     private string password;
 
+    
+    protected override async Task OnInitializedAsync()
+    {
+        if (UserSession.UserId != 0)
+        {
+            NavigationManager.NavigateTo("/account");
+        }
+    }
+
     private async Task HandleValidSubmit()
     {
-        newCustomer.Password = password;
+        newCustomer.Password = PasswordUtils.HashPassword(password);
         newCustomer = await CustomerService.LogIn(newCustomer);
         if (newCustomer == null)
         {
