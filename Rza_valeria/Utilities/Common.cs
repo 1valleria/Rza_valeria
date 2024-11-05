@@ -1,7 +1,7 @@
 ﻿using System.Text;
 using System.Security.Cryptography;
 
-namespace RZA_sly.Utilities
+namespace Rza_valeria.Utilities
 {
     public static class PasswordUtils
     {
