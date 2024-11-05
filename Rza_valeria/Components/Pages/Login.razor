@@ -1,10 +1,11 @@
 ﻿@page "/login"
 @using Rza_valeria.Models
 @using Rza_valeria.Services
+@using Rza_valeria.Utilities
 
 @inject CustomerService CustomerService
 @inject NavigationManager NavigationManager
-
+@inject UserSession UserSession
 @rendermode InteractiveServer
 
 
@@ -42,6 +43,7 @@
         }
         else
         {
+            UserSession.UserId = newCustomer.CustomerId;
             NavigationManager.NavigateTo("/account");
         }
     }

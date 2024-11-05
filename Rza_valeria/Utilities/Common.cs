@@ -3,6 +3,12 @@ using System.Security.Cryptography;
 
 namespace Rza_valeria.Utilities
 {
+
+    public class UserSession 
+    {
+        public int userId { get; set; }
+    }
+
     public static class PasswordUtils
     {
         #region hidden
