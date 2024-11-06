@@ -1,7 +1,8 @@
 ﻿@using Rza_valeria.Services
 @using Rza_valeria.Models
+@using Rza_valeria.Utilities
 @inject CustomerService CustomerService
-@page "/register"
+@page "/Register.razor"
 
 
 <h3>Register</h3>
@@ -48,6 +49,7 @@
     private Customer newCustomer=new Customer();
     private async Task RegisterCustomer()
     {
+        newCustomer.Password = PasswordUtils.HashPassword(newCustomer.Password);
         await CustomerService.AddCustomerAsync(newCustomer);
     }
 }
