@@ -12,6 +12,89 @@
 <h3>Account</h3>
 <button @onclick="ShowUserId">Show User ID</button>
 
-@code {
-
+@if (customer != null)
+{
+    <li>@customer.FirstName @customer.LastName</li>
 }
+@if (rooms != null)
+{
+    <ul>
+        @foreach (var room in rooms)
+        {
+            <li>Room @room.RoomNumber: @room.RoomType for @room.Capacity people</li>
+        }
+    </ul>
+}
+
+<div>
+    @if (rooms != null)
+    {
+        <select @bind=Roomnumber>
+            @foreach (var room in rooms)
+            {
+                <option value=@room.RoomNumber>@room.RoomType</option>
+
+            }
+        </select>
+    }
+    <input type="date" min=@DateTime.Now.ToString("yyyy-MM-dd") @bind=startDate>
+    <select @bind=Days>
+        @for (int i = 1; i <= 7; i++)
+        {
+            <option value=@i>@i Days</option>
+        }
+    </select>
+    <button @onclick=BookRoom>Book this room</button>
+</div>
+
+<button @onclick=Logout>Log Out</button>
+
+<a href="/bookings">My Bookings</a>
+
+@code {
+    private Customer customer;
+    private List<Room> rooms;
+
+    private DateOnly startDate;
+
+    private Room Room;
+    private int Roomnumber;
+    private int Days;
+
+    private bool loaded = false;
+
+    protected override async Task OnInitializedAsync()
+    {
+        rooms = await RoomService.GetRoomsAsync();
+        if (UserSession.UserId == 0)
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+        else
+        {
+            customer = await CustomerService.GetCustomerFromIdAsync(UserSession.UserId);
+        }
+    }
+
+    private async Task ShowUserId()
+    {
+        Console.WriteLine(UserSession.UserId); // Retrieve server-side user ID
+    }
+    private async Task Logout()
+    {
+        UserSession.UserId = 0;
+        NavigationManager.NavigateTo("/");
+    }
+    private async Task SetRoom()
+    {
+
+    }
+    private async Task BookRoom()
+    {
+        Console.WriteLine(Roomnumber);
+        Room = await RoomService.GetRoomAsync(Roomnumber);
+        await RoombookingService.AddRoombookingAsync(customer, Room, startDate, Days);
+
+    }
+}
+
