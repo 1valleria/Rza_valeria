@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿// This utility code in the `Rza_valeria.Utilities` namespace provides password management and user session functionality. 
+// The `PasswordUtils` class includes methods to hash passwords securely and validate them according to set criteria.
+//The `UserSession` class holds user session information, specifically the `UserId` property to track the current user's ID.
+using System.Text;
 using System.Security.Cryptography;
 
 namespace Rza_valeria.Utilities
@@ -34,6 +37,7 @@ namespace Rza_valeria.Utilities
                 return sb.ToString();  // Return the hashed password as a string
             }
         }
+        // Validates the password based on criteria: length, presence of digits, special characters, and mixed case.
         public static async Task<bool> ValidPassword(string password)
         {
             bool valid = true;
@@ -57,7 +61,7 @@ namespace Rza_valeria.Utilities
         }
     
     }
-
+    // Class to manage user session information, currently storing the user's ID.
     public class UserSession
     {
         public int UserId { get; set; }

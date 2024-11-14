@@ -1,54 +1,73 @@
-﻿@using Rza_valeria.Services
+﻿@*
+User Registration Page
+======================
+This page allows new users to register by entering their personal details.
+
+- `CustomerService`: Injected service that handles the creation of a new user.
+- `newCustomer`: A `Customer` model instance that holds the data entered by the user.
+- `RegisterCustomer` method: Hashes the password and calls `CustomerService` to save the new customer data.
+
+Fields:
+-------
+The form includes fields for username, first name, last name, email, password, post code, phone number, and date of birth.
+Each field binds directly to properties of `newCustomer`, capturing user input.
+
+Note:
+-----
+- The "Register" button triggers the `RegisterCustomer` method, which will add the customer in the database.
+- Password is hashed for security before submission.
+*@
+
+@using Rza_valeria.Services
 @using Rza_valeria.Models
 @using Rza_valeria.Utilities
 @inject CustomerService CustomerService
-@page "/Register.razor"
-
+@page "/register"
 
 <h3>Register</h3>
 <div>
     <label>Username</label>
-    <input @bind=newCustomer.Username>
+    <input @bind=newCustomer.Username> 
+</div>
 <div>
     <label>First Name</label>
-    <input @bind=newCustomer.FirstName>
+    <input @bind=newCustomer.FirstName> 
 </div>
 <div>
     <label>Last Name</label>
-    <input @bind=newCustomer.LastName>
+    <input @bind=newCustomer.LastName> 
 </div>
 <div>
     <label>Email</label>
-    <input @bind=newCustomer.Email>
+    <input @bind=newCustomer.Email> 
 </div>
 <div>
     <label>Password</label>
-    <input @bind=newCustomer.Password>
+    <input @bind=newCustomer.Password> 
 </div>
 <div>
     <label>Post Code</label>
-    <input @bind=newCustomer.Postcode>
+    <input @bind=newCustomer.Postcode> 
 </div>
 <div>
     <label>Phone Number</label>
-    <input @bind=newCustomer.PhoneNumber>
+    <input @bind=newCustomer.PhoneNumber> 
 </div>
 <div>
     <label>Date of Birth</label>
-    <input @bind=newCustomer.DateOfBirth>
+    <input @bind=newCustomer.DateOfBirth> 
 </div>
-<div>
-    <label>Date of Birth</label>
-    <input @bind=newCustomer.DateOfBirth>
-</div>
-<button @onclick=@RegisterCustomer>Register</button>
 
-
+<button @onclick=@RegisterCustomer>Register</button> <!-- Triggers RegisterCustomer method when clicked -->
 @code {
-    private Customer newCustomer=new Customer();
+    private Customer newCustomer = new Customer(); // Instance of Customer model to hold form data
+
     private async Task RegisterCustomer()
     {
+        // Hashes the entered password for security before saving to database
         newCustomer.Password = PasswordUtils.HashPassword(newCustomer.Password);
+
+        // Adds the new customer using CustomerService, which handles database interaction
         await CustomerService.AddCustomerAsync(newCustomer);
     }
 }

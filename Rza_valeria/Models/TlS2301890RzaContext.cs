@@ -5,42 +5,47 @@ using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
 namespace Rza_valeria.Models;
 
+// DbContext class for connecting to and interacting with the database.
 public partial class TlS2301890RzaContext : DbContext
 {
+    // Default constructor, required for some operations like migrations
     public TlS2301890RzaContext()
     {
     }
 
+    // Constructor that accepts DbContextOptions, enabling configuration when initializing the context
     public TlS2301890RzaContext(DbContextOptions<TlS2301890RzaContext> options)
         : base(options)
     {
     }
 
+    // DbSet properties represent tables in the database
     public virtual DbSet<Attraction> Attractions { get; set; }
-
     public virtual DbSet<Customer> Customers { get; set; }
-
     public virtual DbSet<Educationalvisit> Educationalvisits { get; set; }
-
     public virtual DbSet<Hotelroom> Hotelrooms { get; set; }
-
     public virtual DbSet<Roombooking> Roombookings { get; set; }
-
     public virtual DbSet<Ticket> Tickets { get; set; }
 
+    // Database configuration for the context (e.g., MySQL connection string) is typically done here
+    // This has been commented out as it might be managed by dependency injection in your startup configuration
     //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     //    => optionsBuilder.UseMySql("name=MySqlConnection", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.29-mysql"));
 
+    // OnModelCreating configures the schema for the database by defining the structure of each entity
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Set default character set and collation for MySQL database
         modelBuilder
             .UseCollation("utf8mb4_0900_ai_ci")
             .HasCharSet("utf8mb4");
 
+        // Configure each entity (table) with its properties and constraints
+
+        // Attraction entity mapping
         modelBuilder.Entity<Attraction>(entity =>
         {
             entity.HasKey(e => e.AttractionId).HasName("PRIMARY");
-
             entity.ToTable("attraction");
 
             entity.Property(e => e.AttractionId).HasColumnName("attractionID");
@@ -58,16 +63,15 @@ public partial class TlS2301890RzaContext : DbContext
                 .HasColumnName("openingHours");
         });
 
+        // Customer entity mapping
         modelBuilder.Entity<Customer>(entity =>
         {
             entity.HasKey(e => e.CustomerId).HasName("PRIMARY");
-
             entity.ToTable("customers");
 
+            // Unique constraints on specific properties
             entity.HasIndex(e => e.Email, "email").IsUnique();
-
             entity.HasIndex(e => e.PhoneNumber, "phoneNumber").IsUnique();
-
             entity.HasIndex(e => e.Username, "username").IsUnique();
 
             entity.Property(e => e.CustomerId)
@@ -99,12 +103,13 @@ public partial class TlS2301890RzaContext : DbContext
                 .HasColumnName("username");
         });
 
+        // Educationalvisit entity mapping
         modelBuilder.Entity<Educationalvisit>(entity =>
         {
             entity.HasKey(e => e.MaterialiD).HasName("PRIMARY");
-
             entity.ToTable("educationalvisits");
 
+            // Foreign key to Ticket entity
             entity.HasIndex(e => e.TicketId, "ticketID");
 
             entity.Property(e => e.MaterialiD)
@@ -126,10 +131,10 @@ public partial class TlS2301890RzaContext : DbContext
                 .HasConstraintName("educationalvisits_ibfk_1");
         });
 
+        // Hotelroom entity mapping
         modelBuilder.Entity<Hotelroom>(entity =>
         {
             entity.HasKey(e => e.RoomNumber).HasName("PRIMARY");
-
             entity.ToTable("hotelrooms");
 
             entity.Property(e => e.RoomNumber)
@@ -142,6 +147,7 @@ public partial class TlS2301890RzaContext : DbContext
                 .HasColumnName("roomType");
         });
 
+        // Roombooking entity mapping with composite key
         modelBuilder.Entity<Roombooking>(entity =>
         {
             entity.HasKey(e => new { e.CustomerId, e.RoomNumber, e.StartDate })
@@ -149,7 +155,6 @@ public partial class TlS2301890RzaContext : DbContext
                 .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0, 0 });
 
             entity.ToTable("roombookings");
-
             entity.HasIndex(e => e.RoomNumber, "roomNumber");
 
             entity.Property(e => e.CustomerId).HasColumnName("customerID");
@@ -157,6 +162,7 @@ public partial class TlS2301890RzaContext : DbContext
             entity.Property(e => e.StartDate).HasColumnName("startDate");
             entity.Property(e => e.EndDate).HasColumnName("endDate");
 
+            // Define relationships with Customer and Hotelroom entities
             entity.HasOne(d => d.Customer).WithMany(p => p.Roombookings)
                 .HasForeignKey(d => d.CustomerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
@@ -168,10 +174,10 @@ public partial class TlS2301890RzaContext : DbContext
                 .HasConstraintName("roombookings_ibfk_2");
         });
 
+        // Ticket entity mapping
         modelBuilder.Entity<Ticket>(entity =>
         {
             entity.HasKey(e => e.TicketId).HasName("PRIMARY");
-
             entity.ToTable("ticket");
 
             entity.HasIndex(e => e.CustomerId, "customerID");
@@ -194,8 +200,10 @@ public partial class TlS2301890RzaContext : DbContext
                 .HasConstraintName("ticket_ibfk_1");
         });
 
+        // Partial method to allow further customization in a separate file if needed
         OnModelCreatingPartial(modelBuilder);
     }
 
+     //Partial method definition, can be used for further configurations in a separate partial class
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

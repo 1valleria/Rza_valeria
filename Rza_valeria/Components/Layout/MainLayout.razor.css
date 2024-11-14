@@ -13,7 +13,7 @@
 .header {
     min-height: 100vh;
     width: 100%;
-    background-image:url(images/Main\ image.jpg);
+    background-image: url(images/Main\ image.jpg);
     background-position: center;
     background-size: cover;
     position: relative;
@@ -76,7 +76,6 @@ nav .fa {
     transform: translate(-50%, -50%);
     text-align: center;
     padding: 10pc;
-
 }
 
     .text-box h1 {
@@ -106,7 +105,6 @@ nav .fa {
         border: 1px solid #f44336;
         background: #f44336;
     }
-
 
 @media(max-width: 700px) {
     .nav-links ul li {
@@ -142,10 +140,6 @@ nav .fa {
     }
 }
 
-
-
-
-
 .page {
     position: relative;
     display: flex;
@@ -175,23 +169,23 @@ main {
         text-decoration: none;
     }
 
-    .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
-        text-decoration: underline;
-    }
+        .top-row ::deep a:hover, .top-row ::deep .btn-link:hover {
+            text-decoration: underline;
+        }
 
-    .top-row ::deep a:first-child {
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+        .top-row ::deep a:first-child {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
 
 @media (max-width: 640.98px) {
     .top-row {
         justify-content: space-between;
     }
 
-    .top-row ::deep a, .top-row ::deep .btn-link {
-        margin-left: 0;
-    }
+        .top-row ::deep a, .top-row ::deep .btn-link {
+            margin-left: 0;
+        }
 }
 
 @media (min-width: 641px) {
@@ -212,11 +206,11 @@ main {
         z-index: 1;
     }
 
-    .top-row.auth ::deep a:first-child {
-        flex: 1;
-        text-align: right;
-        width: 0;
-    }
+        .top-row.auth ::deep a:first-child {
+            flex: 1;
+            text-align: right;
+            width: 0;
+        }
 
     .top-row, article {
         padding-left: 2rem !important;
