@@ -1,0 +1,49 @@
+﻿@page "/bookings"
+@using Rza_valeria.Models
+@using Rza_valeria.Utilities
+@using Rza_valeria.Services
+@inject RoombookingService RoombookingService
+@inject UserSession UserSession
+@inject NavigationManager NavigationManager
+@rendermode InteractiveServer
+
+<h3>My Bookings</h3>
+
+@if (myBookings != null)
+{
+    <ul>
+        @foreach (var booking in myBookings)
+        {
+            <li>Room @booking.RoomNumber: @booking.StartDate to @booking.EndDate</li>
+            <li>
+                <button @onclick="@(e => deleteBooking(booking))">Delete this Booking</button>
+            </li>
+        }
+    </ul>
+}
+
+
+@code {
+    List<Roombooking> myBookings;
+    protected override async Task OnInitializedAsync()
+    {
+        if (UserSession.UserId == 0)
+        {
+            NavigationManager.NavigateTo("/login");
+        }
+        else
+        {
+            await LoadBookings();
+        }
+    }
+    private async Task LoadBookings()
+    {
+        myBookings = await RoombookingService.GetRoombookingsFromCustomer(UserSession.UserId);
+    }
+    private async Task deleteBooking(Roombooking bookingToDelete)
+    {
+        await RoombookingService.DeleteBooking(bookingToDelete);
+        await LoadBookings();
+    }
+
+}
