@@ -14,4 +14,5 @@ public partial class Attraction
     public string? Location { get; set; }
 
     public string? OpeningHours { get; set; }
+    public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }

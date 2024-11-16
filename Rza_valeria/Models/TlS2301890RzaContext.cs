@@ -23,7 +23,7 @@ public partial class TlS2301890RzaContext : DbContext
     public virtual DbSet<Attraction> Attractions { get; set; }
     public virtual DbSet<Customer> Customers { get; set; }
     public virtual DbSet<Educationalvisit> Educationalvisits { get; set; }
-    public virtual DbSet<Hotelroom> Hotelrooms { get; set; }
+    public virtual DbSet<Room> Rooms { get; set; }
     public virtual DbSet<Roombooking> Roombookings { get; set; }
     public virtual DbSet<Ticket> Tickets { get; set; }
 
@@ -132,7 +132,7 @@ public partial class TlS2301890RzaContext : DbContext
         });
 
         // Hotelroom entity mapping
-        modelBuilder.Entity<Hotelroom>(entity =>
+        modelBuilder.Entity<Room>(entity =>
         {
             entity.HasKey(e => e.RoomNumber).HasName("PRIMARY");
             entity.ToTable("hotelrooms");
@@ -141,7 +141,6 @@ public partial class TlS2301890RzaContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("roomNumber");
             entity.Property(e => e.Capacity).HasColumnName("capacity");
-            entity.Property(e => e.Floor).HasColumnName("floor");
             entity.Property(e => e.RoomType)
                 .HasMaxLength(20)
                 .HasColumnName("roomType");
@@ -168,7 +167,7 @@ public partial class TlS2301890RzaContext : DbContext
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("roombookings_ibfk_1");
 
-            entity.HasOne(d => d.RoomNumberNavigation).WithMany(p => p.Roombookings)
+            entity.HasOne(d => d.Room).WithMany(p => p.Roombookings)
                 .HasForeignKey(d => d.RoomNumber)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("roombookings_ibfk_2");

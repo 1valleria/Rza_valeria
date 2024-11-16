@@ -5,7 +5,7 @@
 }
 
 .newlogo {
-    width: 300px;
+    width: 250px;
     height: auto;
     margin-right: auto;
 }
@@ -34,6 +34,7 @@ nav {
 .nav-links {
     flex: 1;
     text-align: right;
+    color:#fff
 }
 
     .nav-links ul li {
@@ -69,7 +70,7 @@ nav .fa {
 
 .text-box {
     width: 90%;
-    color: #fff;
+    color: #f7f7f7;
     position: absolute;
     top: 90%;
     left: 50%;
