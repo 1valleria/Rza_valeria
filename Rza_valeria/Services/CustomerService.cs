@@ -8,10 +8,10 @@ namespace Rza_valeria.Services
     // adding customers, logging in, changing passwords, and retrieving customer information.
     public class CustomerService
     {
-        private readonly TlS2301890RzaContext _context;  // `_context` is a database context for accessing and modifying the Customers table.
+        private readonly RzaContext _context;  // `_context` is a database context for accessing and modifying the Customers table.
 
         // Constructor that initializes the database context.
-        public CustomerService(TlS2301890RzaContext context)
+        public CustomerService(RzaContext context)
         {
             _context = context;
         }

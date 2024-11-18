@@ -9,10 +9,7 @@ public partial class Attraction
 
     public string? Name { get; set; }
 
-    public string? Description { get; set; }
+    public float? Price { get; set; }
 
-    public string? Location { get; set; }
-
-    public string? OpeningHours { get; set; }
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }
