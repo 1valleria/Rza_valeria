@@ -1,0 +1,42 @@
+﻿@using Rza_valeria.Models
+@using Rza_valeria.Services
+@inject AttractionService AttractionService
+@page "/tickets"
+
+<h3>Tickets</h3>
+
+@if (attractions != null)
+{
+    @foreach (Attraction attraction in attractions)
+    {
+        <div>
+            @attraction.Name: £@attraction.Price
+            <button @onclick="@(e => AddTicket(attraction.AttractionId))">Add to Basket</button>
+        </div>
+    }
+    <button>Book Tickets</button>
+}
+else
+{
+    <div>no attractions</div>
+}
+@code {
+    List<Attraction> attractions;
+    List<Ticket> tickets;
+
+    protected override async Task OnInitializedAsync()
+    {
+        attractions = await AttractionService.GetAttractionsAsync();
+        tickets = new List<Ticket>();
+    }
+    private void AddTicket(int attractionId)
+    {
+        Ticket newTicket = new Ticket();
+        newTicket.AttractionId = attractionId;
+        newTicket.Date = DateOnly.FromDateTime(DateTime.Now);
+    }
+    private void BookTicekts()
+    {
+
+    }
+}
