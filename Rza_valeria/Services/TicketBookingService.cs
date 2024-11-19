@@ -1,16 +1,17 @@
-﻿using Rza_valeria.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Rza_valeria.Models;
+using Rza_valeria.Models;
 
 namespace Rza_valeria.Services
 {
-    public class TicketbookingbookingService
+    public class TicketbookingService
     {
         private readonly RzaContext _context;
-        public TicketbookingbookingService(RzaContext context)
+        public TicketbookingService(RzaContext context)
         {
             _context = context;
         }
-        public async Task<List<Ticketbooking>> GetTicketbookingAsync()
+        public async Task<List<Ticketbooking>> GetTicketbookingsAsync()
         {
             return await _context.Ticketbookings.ToListAsync();
         }

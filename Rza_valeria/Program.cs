@@ -1,12 +1,13 @@
-using Rza_valeria.Components;
-using Rza_valeria.Models;
+﻿using Rza_valeria.Components;
 using Rza_valeria.Services;
 using Rza_valeria.Utilities;
+using Rza_valeria.Models;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace Rza_valeria
 {
+    //scaffold code:
+    //scaffold-dbcontext name="MySqlConnection" pomelo.entityframeworkcore.mysql -outputdir Models -force​
     public class Program
     {
         public static void Main(string[] args)
@@ -17,15 +18,19 @@ namespace Rza_valeria
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
+            builder.Services.AddDbContext<RzaContext>(options =>
+                options.UseMySql(builder.Configuration.GetConnectionString("offlineConnection"),
+                new MySqlServerVersion(new Version(8, 0, 29))));
+
             builder.Services.AddScoped<CustomerService>();
+            builder.Services.AddScoped<AttractionService>();
+            builder.Services.AddScoped<TicketService>();
+            builder.Services.AddScoped<TicketbookingService>();
 
             builder.Services.AddSingleton<UserSession>();
-            builder.Services.AddDbContext<RzaContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("offlineConnection"), new MySqlServerVersion(new Version(8, 0, 29))));
-            //builder.Services.AddDbContext<TlS2301890RzaContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("MySqlConnection"), new MySqlServerVersion(new Version(8, 0, 29))));
-            builder.Services.AddScoped<AttractionService>();
+
 
             var app = builder.Build();
-
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
