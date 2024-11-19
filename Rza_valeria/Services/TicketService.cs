@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 
 namespace Rza_valeria.Services
-
 {
     public class TicketService
     {
@@ -11,9 +10,14 @@ namespace Rza_valeria.Services
         {
             _context = context;
         }
-        public async Task<List<Attraction>> GetAttractionsAsync()
+        public async Task<List<Ticket>> GetTicketAsync()
         {
-            return await _context.Attractions.ToListAsync();
+            return await _context.Tickets.ToListAsync();
+        }
+        public async Task AddTicketAsync(Ticket newTicket) 
+        {
+            await _context.Tickets.AddAsync(newTicket);
+            await _context.SaveChangesAsync();
         }
     }
 }
