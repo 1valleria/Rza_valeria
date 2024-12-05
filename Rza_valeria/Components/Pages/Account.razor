@@ -1,21 +1,25 @@
-﻿@* @using RZA_sly.Utilities
-@using RZA_sly.Services
-@using RZA_sly.Models
+﻿@page "/account"
+@using Rza_valeria.Utilities
+@using Rza_valeria.Services
+@using Rza_valeria.Models
 @inject UserSession UserSession
+@inject RoomService RoomService
+@inject RoombookingService RoombookingService
 @inject CustomerService CustomerService
 @inject NavigationManager NavigationManager
 
 @rendermode InteractiveServer
 
-@page "/account"
 
 <h3>Account</h3>
+
 <button @onclick="ShowUserId">Show User ID</button>
 
 @if (customer != null)
 {
     <li>@customer.FirstName @customer.LastName</li>
 }
+
 @if (rooms != null)
 {
     <ul>
@@ -97,5 +101,3 @@
 
     }
 }
-
- *@

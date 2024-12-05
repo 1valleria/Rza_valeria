@@ -2,16 +2,15 @@
 using Rza_valeria.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Rza_valeria.Services
-{
+namespace Rza_valeria.Services { 
     // This `CustomerService` class provides methods for managing customer-related operations, such as 
     // adding customers, logging in, changing passwords, and retrieving customer information.
     public class CustomerService
     {
-        private readonly RzaContext _context;  // `_context` is a database context for accessing and modifying the Customers table.
+        private readonly TlS2301890RzaContext _context;  // `_context` is a database context for accessing and modifying the Customers table.
 
         // Constructor that initializes the database context.
-        public CustomerService(RzaContext context)
+        public CustomerService(TlS2301890RzaContext context)
         {
             _context = context;
         }

@@ -6,8 +6,8 @@ namespace Rza_valeria.Services
 {
     public class TicketService
     {
-        private readonly RzaContext _context;
-        public TicketService(RzaContext context)
+        private readonly TlS2301890RzaContext _context;
+        public TicketService(TlS2301890RzaContext context)
         {
             _context = context;
         }

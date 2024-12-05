@@ -5,13 +5,13 @@ using Pomelo.EntityFrameworkCore.MySql.Scaffolding.Internal;
 
 namespace Rza_valeria.Models;
 
-public partial class RzaContext : DbContext
+public partial class TlS2301890RzaContext : DbContext
 {
-    public RzaContext()
+    public TlS2301890RzaContext()
     {
     }
 
-    public RzaContext(DbContextOptions<RzaContext> options)
+    public TlS2301890RzaContext(DbContextOptions<TlS2301890RzaContext> options)
         : base(options)
     {
     }
@@ -20,12 +20,16 @@ public partial class RzaContext : DbContext
 
     public virtual DbSet<Customer> Customers { get; set; }
 
+    public virtual DbSet<Room> Rooms { get; set; }
+
+    public virtual DbSet<Roombooking> Roombookings { get; set; }
+
     public virtual DbSet<Ticket> Tickets { get; set; }
 
     public virtual DbSet<Ticketbooking> Ticketbookings { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder.UseMySql("name=offlineConnection", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.40-mysql"));
+        => optionsBuilder.UseMySql("name=MySqlConnection", Microsoft.EntityFrameworkCore.ServerVersion.Parse("8.0.29-mysql"));
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -82,47 +86,89 @@ public partial class RzaContext : DbContext
                 .HasColumnName("username");
         });
 
+        modelBuilder.Entity<Room>(entity =>
+        {
+            entity.HasKey(e => e.RoomNumber).HasName("PRIMARY");
+
+            entity.ToTable("rooms");
+
+            entity.Property(e => e.RoomNumber)
+                .ValueGeneratedNever()
+                .HasColumnName("roomNumber");
+            entity.Property(e => e.Capacity).HasColumnName("capacity");
+            entity.Property(e => e.RoomType)
+                .HasMaxLength(20)
+                .HasColumnName("roomType");
+        });
+
+        modelBuilder.Entity<Roombooking>(entity =>
+        {
+            entity.HasKey(e => new { e.CustomerId, e.RoomNumber, e.StartDate })
+                .HasName("PRIMARY")
+                .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0, 0 });
+
+            entity.ToTable("roombookings");
+
+            entity.HasIndex(e => e.RoomNumber, "roomNumber");
+
+            entity.Property(e => e.CustomerId).HasColumnName("customerId");
+            entity.Property(e => e.RoomNumber).HasColumnName("roomNumber");
+            entity.Property(e => e.StartDate).HasColumnName("startDate");
+            entity.Property(e => e.EndDate).HasColumnName("endDate");
+
+            entity.HasOne(d => d.Customer).WithMany(p => p.Roombookings)
+                .HasForeignKey(d => d.CustomerId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("roombookings_ibfk_1");
+
+            entity.HasOne(d => d.RoomNumberNavigation).WithMany(p => p.Roombookings)
+                .HasForeignKey(d => d.RoomNumber)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("roombookings_ibfk_2");
+        });
+
         modelBuilder.Entity<Ticket>(entity =>
         {
             entity.HasKey(e => e.TicketId).HasName("PRIMARY");
 
             entity.ToTable("ticket");
 
-            entity.HasIndex(e => e.AttractionId, "fk1_idx");
+            entity.HasIndex(e => e.AttractionId, "ticket_fk1_idx");
+
+            entity.HasIndex(e => e.TicketbookingId, "ticket_fk2_idx");
 
             entity.Property(e => e.TicketId).HasColumnName("ticketId");
             entity.Property(e => e.AttractionId).HasColumnName("attractionId");
-            //entity.Property(e => e.Date).HasColumnName("date");
+            entity.Property(e => e.TicketbookingId).HasColumnName("ticketbookingId");
 
             entity.HasOne(d => d.Attraction).WithMany(p => p.Tickets)
                 .HasForeignKey(d => d.AttractionId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("ticket_fk1");
+
+            entity.HasOne(d => d.Ticketbooking).WithMany(p => p.Tickets)
+                .HasForeignKey(d => d.TicketbookingId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("ticket_fk2");
         });
 
         modelBuilder.Entity<Ticketbooking>(entity =>
         {
-            //entity.HasKey(e => new { e.CustomerId, e.TicketId })
-            //    .HasName("PRIMARY")
-            //    .HasAnnotation("MySql:IndexPrefixLength", new[] { 0, 0 });
+            entity.HasKey(e => e.TicketbookingId).HasName("PRIMARY");
 
             entity.ToTable("ticketbooking");
 
-            //entity.HasIndex(e => e.TicketId, "fk2_idx");
+            entity.HasIndex(e => e.CustomerId, "ticketbooking_fk1_idx");
 
+            entity.Property(e => e.TicketbookingId).HasColumnName("ticketbookingId");
             entity.Property(e => e.CustomerId).HasColumnName("customerId");
-            //entity.Property(e => e.TicketId).HasColumnName("ticketId");
+            entity.Property(e => e.Date).HasColumnName("date");
             entity.Property(e => e.DateBooked).HasColumnName("dateBooked");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Ticketbookings)
                 .HasForeignKey(d => d.CustomerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("ticketBooking_fk1");
-
-            //entity.HasOne(d => d.Ticket).WithMany(p => p.Ticketbookings)
-            //    .HasForeignKey(d => d.TicketId)
-            //    .OnDelete(DeleteBehavior.ClientSetNull)
-            //    .HasConstraintName("ticketBooking_fk2");
+                .HasConstraintName("ticketbooking_fk1");
         });
 
         OnModelCreatingPartial(modelBuilder);

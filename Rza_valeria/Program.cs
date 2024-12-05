@@ -18,11 +18,13 @@ namespace Rza_valeria
             builder.Services.AddRazorComponents()
                 .AddInteractiveServerComponents();
 
-            builder.Services.AddDbContext<RzaContext>(options =>
-                options.UseMySql(builder.Configuration.GetConnectionString("offlineConnection"),
+            builder.Services.AddDbContext<TlS2301890RzaContext>(options =>
+                options.UseMySql(builder.Configuration.GetConnectionString("MySqlConnection"),
                 new MySqlServerVersion(new Version(8, 0, 29))));
 
             builder.Services.AddScoped<CustomerService>();
+            builder.Services.AddScoped<RoomService>();
+            builder.Services.AddScoped<RoombookingService>();
             builder.Services.AddScoped<AttractionService>();
             builder.Services.AddScoped<TicketService>();
             builder.Services.AddScoped<TicketbookingService>();

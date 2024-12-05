@@ -21,7 +21,7 @@ else
 {
     <h1>your userid is @UserSession.UserId</h1>
     <h1>Hello @customerName, Welcome back to RZA!</h1>
-    <button onclick=@Modify>Modify your account</button>
+    <button onclick=@Modify>Change your password</button>
 }
 @code {
     private bool dialogShown = false;
@@ -40,4 +40,4 @@ else
         customerName = await CustomerService.GetCustomerNameAsync(UserSession.UserId);
     }
 }
-<button>Login</button>
+

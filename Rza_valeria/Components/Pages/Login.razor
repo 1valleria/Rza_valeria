@@ -1,31 +1,15 @@
-﻿@*Login Page
-==========
-This page uses a `Customer` model (`newCustomer`) to store the form input data (username and password).
-
-- `CustomerService`: Injected service responsible for authenticating the user.
-- `UserSession`: Manages the session data, including `UserId` for tracking the logged-in user.
-- `PasswordUtils.HashPassword`: Utility method for hashing passwords.
-- `NavigationManager`: Enables redirection to different pages.
-
-Form and Binding:
------------------
-- The `<EditForm>` component is bound to `newCustomer`, which holds the user credentials.
-- `@bind-Value` binds the form fields directly to `newCustomer.Username` and a local `password` variable.
-- When submitted, `HandleValidSubmit` is triggered, which handles hashing, authentication, and redirection.*@
-@page "/login"
+﻿@page "/login"
 @using Rza_valeria.Models    
 @using Rza_valeria.Utilities
 @using Rza_valeria.Services
 @inject CustomerService CustomerService     
 @inject NavigationManager NavigationManager 
-@inject UserSession UserSession
+@inject UserSession UserSession                 
 
 @rendermode InteractiveServer
 
 
 <h3>Log In</h3>
-
-
 
 <EditForm Model="newCustomer" OnValidSubmit="HandleValidSubmit" FormName="LoginForm">
     <DataAnnotationsValidator />

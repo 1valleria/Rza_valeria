@@ -1,73 +1,87 @@
-﻿@*
-User Registration Page
-======================
-This page allows new users to register by entering their personal details.
-
-- `CustomerService`: Injected service that handles the creation of a new user.
-- `newCustomer`: A `Customer` model instance that holds the data entered by the user.
-- `RegisterCustomer` method: Hashes the password and calls `CustomerService` to save the new customer data.
-
-Fields:
--------
-The form includes fields for username, first name, last name, email, password, post code, phone number, and date of birth.
-Each field binds directly to properties of `newCustomer`, capturing user input.
-
-Note:
------
-- The "Register" button triggers the `RegisterCustomer` method, which will add the customer in the database.
-- Password is hashed for security before submission.
-*@
-
-@using Rza_valeria.Services
+﻿@page "/register"
 @using Rza_valeria.Models
-@using Rza_valeria.Utilities
+@using Rza_valeria.Services
 @inject CustomerService CustomerService
-@page "/register"
+@rendermode InteractiveServer
 
-<h3>Register</h3>
-<div>
-    <label>Username</label>
-    <input @bind=newCustomer.Username> 
-</div>
-<div>
-    <label>First Name</label>
-    <input @bind=newCustomer.FirstName> 
-</div>
-<div>
-    <label>Last Name</label>
-    <input @bind=newCustomer.LastName> 
-</div>
-<div>
-    <label>Email</label>
-    <input @bind=newCustomer.Email> 
-</div>
-<div>
-    <label>Password</label>
-    <input @bind=newCustomer.Password> 
-</div>
-<div>
-    <label>Post Code</label>
-    <input @bind=newCustomer.Postcode> 
-</div>
-<div>
-    <label>Phone Number</label>
-    <input @bind=newCustomer.PhoneNumber> 
-</div>
-<div>
-    <label>Date of Birth</label>
-    <input @bind=newCustomer.DateOfBirth> 
-</div>
+@using Rza_valeria.Utilities
+@inject NavigationManager NavigationManager
+@inject UserSession UserSession
 
-<button @onclick=@RegisterCustomer>Register</button> <!-- Triggers RegisterCustomer method when clicked -->
+
+<h3>Register New User</h3>
+
+
+<EditForm Model="newCustomer" OnValidSubmit="HandleValidSubmit" FormName="testForm">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div>
+        <label>Username:</label>
+        <InputText @bind-Value="newCustomer.Username" />
+    </div>
+
+    <div>
+        <label>Password:</label>
+        <InputText @bind-Value="password" type="password" />
+    </div>
+
+    <div>
+        <label>First Name:</label>
+        <InputText @bind-Value="newCustomer.FirstName" />
+    </div>
+
+    <div>
+        <label>Last Name:</label>
+        <InputText @bind-Value="newCustomer.LastName" />
+    </div>
+
+    <div>
+        <label>Email Address:</label>
+        <InputText @bind-Value="newCustomer.Email" />
+    </div>
+    <div>
+        <label style="color:red">@message</label>
+    </div>
+    <button type="submit">Register</button>
+</EditForm>
+
 @code {
-    private Customer newCustomer = new Customer(); // Instance of Customer model to hold form data
+    private Customer newCustomer = new Customer();
+    private string password;
+    private string message;
 
-    private async Task RegisterCustomer()
+    protected override async Task OnInitializedAsync()
     {
-        // Hashes the entered password for security before saving to database
-        newCustomer.Password = PasswordUtils.HashPassword(newCustomer.Password);
+        if (UserSession.UserId != 0)
+        {
+            NavigationManager.NavigateTo("/account");
+        }
+    }
 
-        // Adds the new customer using CustomerService, which handles database interaction
-        await CustomerService.AddCustomerAsync(newCustomer);
+    private async Task HandleValidSubmit()
+    {
+        bool usernameTaken = await CustomerService.CheckUsernameExistsAsync(newCustomer.Username);
+        bool passwordValid = await PasswordUtils.ValidPassword(password);
+        if (usernameTaken)
+        {
+            Console.WriteLine("username taken");
+            message = "username taken";
+        }
+        else if (!passwordValid)
+        {
+            message = "password does not meet criteria";
+        }
+        else
+        {
+            // Hash the password using SHA256
+            newCustomer.Password = PasswordUtils.HashPassword(password);
+
+            // Insert the user into the database
+            await CustomerService.AddCustomerAsync(newCustomer);
+            newCustomer = new Customer();
+            password = "";
+            NavigationManager.NavigateTo("");
+        }
     }
 }

@@ -6,8 +6,8 @@ namespace Rza_valeria.Services
 {
     public class AttractionService
     {
-        private readonly RzaContext _context;
-        public AttractionService(RzaContext context)
+        private readonly TlS2301890RzaContext _context;
+        public AttractionService(TlS2301890RzaContext context)
         {
             _context = context;
         }

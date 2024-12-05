@@ -1,4 +1,4 @@
-﻿@* @page "/bookings"
+﻿@page "/bookings"
 @using Rza_valeria.Models
 @using Rza_valeria.Utilities
 @using Rza_valeria.Services
@@ -8,8 +8,6 @@
 @rendermode InteractiveServer
 
 <h3>My Bookings</h3>
-
-
 
 @if (myBookings != null)
 {
@@ -23,7 +21,6 @@
         }
     </ul>
 }
-
 
 @code {
     List<Roombooking> myBookings;
@@ -47,5 +44,5 @@
         await RoombookingService.DeleteBooking(bookingToDelete);
         await LoadBookings();
     }
+}
 
-} *@
