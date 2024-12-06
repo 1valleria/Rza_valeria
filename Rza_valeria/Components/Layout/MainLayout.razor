@@ -1,25 +1,236 @@
 ﻿@inherits LayoutComponentBase
 
 
-<div class="page">
+@* <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salchester Arms Hotel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <section class="header">
+
+        <nav>
+            <a href="/"><img class="newlogo" src="images/newlogo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="Index.html">HOME</a></li>
+                    <li><a href="Rooms.html">ROOMS</a></li>
+                    <li><a href="Facilities.html">FACILITIES</a></li>
+                    <li><a href="Location.html">LOCATION</a></li>
+                    <li><a href="Reviews.html">REVIEWS</a></li>
+                </ul>
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+
+        </nav>
+
+        <div class="text-box">
+            <h1>Salchester Arms - Your Dream Hotel </h1>
+            <p>Salchester Arms: Where Elegance Meets Comfort in Every Stay!</p>
+            <p>Scroll down for more content about hotel!</p>
+            <a href="Rooms.html" class="hero-btn">Explore Our Rooms</a>
+        </div>
+    </section>
+
+    <!---------- course ----------->
+
+
+
+
+    <section class="course">
+        <h1>Services We Offer</h1>
+        <p>Seamless Luxury, Exceptional Service: Salchester Arms- Your Premier Destination.</p>
+        <div class="row">
+            <div class="course-colleft">
+                <h3>Hotel Features</h3>
+                <p> &#11088 Official rating: 5 star</p>
+                <p> &#127970  2 blocks</p>
+                <p> &#128273  125 Rooms</p>
+                <p> &#11109   6 lifts</p>
+                <p> &#127976  4 floors</p>
+            </div>
+            <div class="course-col">
+                <h3>Location</h3>
+                <p> &#127976 Located in the countryside near the town of Salchester in the south of England</p>
+                <p> &#128205 Holly Ln, Silchester, Reading RG7 2PN</p>
+                <p> &#127965 8.1km from the beach</p>
+                <p> &#128205 82km from London centre</p>
+                <p> &#128645 Approximate transfer time 1 hour 30 minutes</p>
+            </div>
+            <div class="course-colleft2">
+                <h3>Facilities</h3>
+                <p>&#9989 Excellent dining options</p>
+                <p>&#9989 Heavenly spa facilities</p>
+                <p>&#9989 Pool areas</p>
+                <p>&#9989 Restaurants & bars</p>
+                <p>&#128732 Free Wi-Fi is available throughout the hotel</p>
+            </div>
+        </div>
+    </section>
+
+    <!---------- campus ---------->
+
+    <section class="campus">
+        <h1>Your Home Away from Home</h1>
+        <p>Discover Luxury at Salchester Arms: Your Home Away from Home</p>
+        <div class="row">
+            <div class="campus-col">
+                <img src="images/Brown Simple Modern Hotel Instagram Story.png">
+                <div class="layer">
+                    <h3>BOOK</h3>
+                </div>
+            </div>
+            <div class="campus-col">
+                <img src="images/1.png">
+                <div class="layer">
+                    <h3>SALCHESTER ARMS</h3>
+                </div>
+            </div>
+            <div class="campus-col">
+                <img src="images/5.png">
+                <div class="layer">
+                    <h3>FACILITIES</h3>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!---------- Facilities ---------->
+
+    <section class="facility">
+        <h1>Our Facilities</h1>
+        <p>Savor, Swim, and Sport!</p>
+        <div class="row">
+            <div class="facility-col">
+                <img src="images/dining.jpg">
+                <h3>Reastaurants & Bars</h3>
+                <p>&#128205 Hole55:</p>
+                <p>A la carte. Serves a range of international, British, Spanish and local cuisine for breakfast, lunch and snacks.</p>
+                <p>&#128205 La Loggia:</p>
+                <p>A la carte. Serves a range of international, Italian, Spanish and local cuisine for breakfast, lunch and dinner. Located on the terrace. Highchairs and kids menu available.</p>
+                <p>The Eggle Bar </p>
+            </div>
+            <div class="facility-col">
+                <img src="images/pool.jpg">
+                <h3>Pool Areas</h3>
+                <p>- Outdoor pool (freshwater). Indoor pool.</p>
+                <p>- Outdoor freshwater infinity pool. Sunbathing area with sunbeds, hammocks and parasols. Free towels. Baby-changing facilities are available.</p>
+                <p>- Indoor freshwater pool (heated). Adult only. Free towels. Located at the spa centre.</p>
+            </div>
+            <div class="facility-col">
+                <img src="images/gym.jpg">
+                <h3>Sport & Leisure</h3>
+                <p>&#9971 3 golf courses including a championship course with on-site clubhouse.* (min age 14yrs).</p>
+                <p>- Air conditioned gym with cardio fitness training equipment, free weights area and fixed strength equipment (min age 16yrs).</p>
+
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <section class="testimonials">
+        <h1>What Our Guests Says</h1>
+        <div class="row">
+            <div class="testimonial-col">
+                <img src="images/user1.jpg">
+                <div>
+                    <p>My experience at Salchester Arms was absolutely delightful! The staff was incredibly friendly and accommodating. The room was spacious, clean, and well-appointed.The location was convenient, and the views from my room were breathtaking. I highly recommend this hotel for a luxurious and relaxing stay.</p>
+                    <h3>Christine Berkley</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+            </div>
+            <div class="testimonial-col">
+                <img src="images/user2.jpg">
+                <div>
+                    <p> Salchester Arms exceeded my expectations in every way! The attention to detail by the staff, the cozy atmosphere, and the personalized service made me feel like I was at home. The breakfast spread was diverse and delicious. The location was perfect – close to attractions yet peaceful. I can't wait to return to this hidden gem.</p>
+                    <h3>David Byer</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!------ Call To Action ------>
+
+    <section class="cta">
+
+        <h1>Book Early, Stay Late<br>Your Next Adventure Awaits!</h1>
+        <a href="rooms.html" class="hero-btn">BOOK YOUR ROOM</a>
+
+    </section>
+
+    <!-------- footer ---------->
+
+    <section class="footer">
+        <h4>About Us</h4>
+        <p> Prefer to speak to one of our expert holiday advisors?</p>
+        <p>Give us a call</p>
+        <p>07482 811599</p>
+        <p>Find us on social</p>
+        <div class="icons">
+            <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-linkedin"></i></a>
+
+        </div>
+        <a class="footer-link"><p>made with <i class="fa fa-heart-o"></i> by Valeria</p></a>
+    </section>
+
+
+    <!----JavaScript for toggle menu---->
+    <script>
+        var navLinks = document.getElementById("navLinks");
+
+        function showMenu() {
+            navLinks.style.right = "0";
+        }
+
+        function hideMenu() {
+            navLinks.style.right = "-200px";
+        }
+    </script>
+
+</body> *@
+
+@Body
+
+
+@* <div class="page">
     <div class="sidebar">
         <NavMenu />
 
-    </div>
+    </div> 
 
-    <main>
+     <main>
         <div class="top-row px-4">
             <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
         </div>
-
+ 
         <article class="content px-4">
-            @Body
-        </article>
-    </main>
+            
+         </article>
+     </main> 
 </div>
-
+ 
 <div id="blazor-error-ui">
     An unhandled error has occurred.
     <a href="" class="reload">Reload</a>
     <a class="dismiss">🗙</a>
-</div>
+</div>  *@

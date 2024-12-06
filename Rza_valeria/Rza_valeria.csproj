@@ -7,6 +7,30 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="NewFolder\**" />
+    <Compile Remove="wwwroot\js\**" />
+    <Compile Remove="wwwroot\NewFolder1\**" />
+    <Compile Remove="wwwroot\NewFolder2\**" />
+    <Compile Remove="wwwroot\NewFolder3\**" />
+    <Content Remove="NewFolder\**" />
+    <Content Remove="wwwroot\js\**" />
+    <Content Remove="wwwroot\NewFolder1\**" />
+    <Content Remove="wwwroot\NewFolder2\**" />
+    <Content Remove="wwwroot\NewFolder3\**" />
+    <EmbeddedResource Remove="NewFolder\**" />
+    <EmbeddedResource Remove="wwwroot\js\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder1\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder2\**" />
+    <EmbeddedResource Remove="wwwroot\NewFolder3\**" />
+    <None Remove="NewFolder\**" />
+    <None Remove="wwwroot\js\**" />
+    <None Remove="wwwroot\NewFolder1\**" />
+    <None Remove="wwwroot\NewFolder2\**" />
+    <None Remove="wwwroot\NewFolder3\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Components\Pages\Home.razor.css" />
     <Content Include="Utilities\Common.cs" />
   </ItemGroup>
 
@@ -26,10 +50,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="8.0.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
   <ItemGroup>
