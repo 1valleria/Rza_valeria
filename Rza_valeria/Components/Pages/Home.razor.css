@@ -1,10 +1,11 @@
-﻿*{margin: 0;
+﻿* {
+    margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
 
 .newlogo {
-    width: 300px;
+    width: 325px;
     height: auto;
     margin-right: auto;
 }
@@ -12,7 +13,7 @@
 .header {
     min-height: 100vh;
     width: 100%;
-    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)), url(images/Main\ image.jpg);
+    background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url(images/flamingo.jpg);
     background-position: center;
     background-size: cover;
     position: relative;
@@ -45,7 +46,7 @@ nav {
         .nav-links ul li a {
             color: #fff;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 25px;
         }
 
         .nav-links ul li::after {
@@ -67,7 +68,7 @@ nav .fa {
 }
 
 .text-box {
-    width: 90%;
+    width: 100%;
     color: #fff;
     position: absolute;
     top: 50%;
@@ -77,12 +78,12 @@ nav .fa {
 }
 
     .text-box h1 {
-        font-size: 62px;
+        font-size: 80px;
     }
 
     .text-box p {
         margin: 20px 0 40px;
-        font-size: 14px;
+        font-size: 18px;
         color: #fff;
     }
 
@@ -92,7 +93,7 @@ nav .fa {
     color: #fff;
     border: 1px solid #fff;
     padding: 12px 34px;
-    font-size: 13px;
+    font-size: 17px;
     background: transparent;
     position: relative;
     cursor: pointer;
@@ -149,7 +150,7 @@ nav .fa {
 }
 
 h1 {
-    font-size: 40px;
+    font-size: 36px;
     font-weight: 600;
 }
 

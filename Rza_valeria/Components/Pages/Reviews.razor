@@ -1,0 +1,154 @@
+﻿@page "/reviews"
+
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="/"><img class="newlogo" src="images/logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/login">SIGN-IN</a></li>
+                    <li><a href="/register">SIGN-UP</a></li>
+                    <li><a href="/bookings">BOOK</a></li>
+                    <li><a href="/tickets">TICKETS</a></li>
+                    <li><a href="/exploreZoo">EDUCATIONAL VISITS</a></li>
+                    <li><a href="/location">LOCATION</a></li>
+                    <li><a href="/reviews">REVIEWS</a></li>
+                </ul>
+            </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+
+    </section>
+
+ <section class="contact-us">
+            <div class="row">
+                <div class="contact-col">
+                    <div>
+                        <i class="fa fa-home"></i>
+                        <span>
+                            <h5>Xyz Road, Abc Building</h5>
+                            <p>Bangalore, Karnataka, IN</p>
+                        </span>
+                    </div>
+                    <div>
+                        <i class="fa fa-phone"></i>
+                        <span>
+                            <h5>+1 0123456789</h5>
+                            <p>Monday to Saturday 10 Am to 6 Pm</p>
+                        </span>
+                    </div>
+                    <div>
+                        <i class="fa fa-envelope-o"></i>
+                        <span>
+                            <h5>info@easytutorialspro.com</h5>
+                            <p>Email us your query</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="contact-col">
+                    <form method="post" action="contact-form-handler.php">
+                    <h2>&#127775 Leave A Review Of Our Hotel &#127775</h2>
+                    <textarea rows="8" name="message" placeholder="Enter Your Review:" required></textarea>
+                    <button type="submit" class="hero-btn red-btn">Send Review</button>
+                    </form> 
+                </div>
+            </div>
+    </section>
+
+<!---------- testimonials ---------->
+
+<section class="testimonials">
+    <h1>What Our Guests Says</h1>
+        <div class="row">
+            <div class="testimonial-col">
+                <img src="images/user1.jpg">
+                <div> 
+                    <p>My experience at Salchester Arms was absolutely delightful! The staff was incredibly friendly and accommodating. The room was spacious, clean, and well-appointed.The location was convenient, and the views from my room were breathtaking. I highly recommend this hotel for a luxurious and relaxing stay.</p>
+                    <h3>Christine Berkley</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+            </div>
+            <div class="testimonial-col">
+                <img src="images/user2.jpg">
+                <div>
+                    <p> Salchester Arms exceeded my expectations in every way! The attention to detail by the staff, the cozy atmosphere, and the personalized service made me feel like I was at home. The breakfast spread was diverse and delicious. The location was perfect – close to attractions yet peaceful. I can't wait to return to this hidden gem.</p>
+                    <h3>David Byer</h3>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+            </div>
+        </div>
+</section>    
+
+<section class="testimonials1">
+    <div class="row">        
+        <div class="testimonial-col">
+            <img src="images/user1.jpg">
+            <div> 
+                <p>My stay at Salchester Arms was fantastic! The room was beautifully decorated, clean, and had all the comforts I could ask for. The hotel staff was welcoming and friendly, making my experience even more enjoyable. The location was convenient, and I highly recommend Salchester Arms for a memorable stay.</p>
+                <h3>Emily Johnson</h3>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+        </div>
+        <div class="testimonial-col">
+            <img src="images/user1.jpg">
+            <div> 
+                <p>Salchester Arms exceeded my expectations. The room was spacious and well-designed, providing a perfect blend of luxury and comfort. The staff was incredibly accommodating, and the central location made it easy to explore the city. I had a wonderful stay and would choose Salchester Arms again without hesitation.</p>
+                <h3>Alexander Davis</h3>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star"></i>
+                <i class="fa fa-star-half-o"></i>
+            </div>
+        </div>
+    </div>
+</section>
+    
+<!-------- footer ---------->
+
+<section class="footer">
+    <h4>About Us</h4>
+    <p> Prefer to speak to one of our expert holiday advisors?</p>
+    <p>Give us a call</p>
+    <p>07482 811599</p>          
+    <p>Find us on social</p>
+    <div class="icons">
+        <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-instagram"></i></a>
+        <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-linkedin"></i></a>
+        
+    </div>
+    <a class="footer-link"><p>made with <i class="fa fa-heart-o"></i> by Valeria</p></a>
+</section>    
+
+  
+  
+<!----JavaScript for toggle menu---->
+<script>
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu() {
+        navLinks.style.right = "0";
+    }
+
+    function hideMenu() {
+        navLinks.style.right = "-200px";
+    }
+</script> 
+    
+</body>

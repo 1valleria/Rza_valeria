@@ -1,6 +1,142 @@
-﻿<h3>ExploreZoo</h3>
-@page "/exploreZoo"
+﻿@page "/exploreZoo"
 
-@code {
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="/"><img class="newlogo" src="images/logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/login">SIGN-IN</a></li>
+                    <li><a href="/register">SIGN-UP</a></li>
+                    <li><a href="/bookings">BOOK</a></li>
+                    <li><a href="/tickets">TICKETS</a></li>
+                    <li><a href="/exploreZoo">EDUCATIONAL VISITS</a></li>
+                    <li><a href="/location">LOCATION</a></li>
+                    <li><a href="/reviews">REVIEWS</a></li>
+                </ul>
+            </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
 
-}
+    </section>
+
+    <!---------- course ----------->
+    
+    <section class="course">
+        <h1>Board Basis</h1>
+        <div class="row">
+            <div class="course-col">
+                <h3>Bed And Breakfast</h3>
+            </div>
+            <div class="course-col">
+                <h3>Half Board</h3>
+                <p>The Half Board package includes buffet-style breakfast, and the choice of lunch or dinner in La Loggia Restaurant </p>
+            </div>
+            <div class="course-col">
+                <h3>Full Board</h3>
+                <p>The Full Board package includes buffet-style breakfast, and the choice of lunch or dinner in La Loggia and Hole55 à la carte restaurant (the operation of Hole55 is occupancy and season dependent).</p>
+            </div>
+        </div>
+    </section>
+
+    
+    
+<!---------- Facilities ---------->
+    
+    <section class="facility">
+        <h1>Our Facilities</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <div class="row">
+                <div class="facility-col">
+                    <img src="images/restaurants.png">
+                    <h3>RESTAURANTS & BARS</h3>
+                    <p>Indulge in exquisite dining at our hotel's restaurant and bar. From chef-crafted dishes to signature cocktails, elevate your experience with us.</p>
+                </div>
+                <div class="facility-col">
+                    <img src="images/pool(1).png">
+                    <h3>POOL AREAS</h3>
+                    <p>Dive into relaxation at our hotel's pool area. Bask in the sun, unwind with refreshing drinks, and enjoy a tranquil oasis for the perfect escape.</p>
+                </div>
+                <div class="facility-col">
+                    <img src="images/gym(2).png">
+                    <h3>SPORT & LEISURE</h3>
+                    <p>Embrace the thrill of sports and leisure at our hotel. From fitness facilities to recreational spaces, find the perfect balance of activity.</p>
+                </div>
+            </div>
+    </section>
+    
+    <section class="row">
+        
+                <div class="facility-col">
+                    <img src="images/wifi.png">
+                    <h3>Free Wi-Fi</h3>
+                    <p>Stay connected seamlessly with complimentary high-speed Wi-Fi at our hotel. Whether for work or leisure, enjoy the convenience of reliable internet access.</p>
+                </div>
+                <div class="facility-col">
+                    <img src="images/spa.png">
+                    <h3>SPA & BEAUTY</h3>
+                    <p>Experience tranquility at our spa and beauty center. Treat yourself to rejuvenating treatments for a blissful escape.</p>
+                </div>
+                <div class="facility-col">
+                    <img src="images/kids.png">
+                    <h3>CHILDREN'S FACILITIES</h3>
+                    <p>Discover a world of fun for your little ones at our hotel's children's facilities. From play areas to engaging activities, we ensure a delightful and safe environment for young adventurers.</p>
+                </div>
+          
+    </section>
+
+
+    <section class="row">
+
+        <div class="facility-col">
+            <img src="images/wifi.png">
+            <h3>Free Wi-Fi</h3>
+            <p>Stay connected seamlessly with complimentary high-speed Wi-Fi at our hotel. Whether for work or leisure, enjoy the convenience of reliable internet access.</p>
+        </div>
+        <div class="facility-col">
+            <img src="images/spa.png">
+            <h3>SPA & BEAUTY</h3>
+            <p>Experience tranquility at our spa and beauty center. Treat yourself to rejuvenating treatments for a blissful escape.</p>
+        </div>
+        <div class="facility-col">
+            <img src="images/kids.png">
+            <h3>CHILDREN'S FACILITIES</h3>
+            <p>Discover a world of fun for your little ones at our hotel's children's facilities. From play areas to engaging activities, we ensure a delightful and safe environment for young adventurers.</p>
+        </div>
+
+    </section>
+<!-------- footer ---------->
+
+<section class="footer">
+    <h4>About Us</h4>
+    <p> Prefer to speak to one of our expert holiday advisors?</p>
+    <p>Give us a call</p>
+    <p>07482 811599</p>          
+    <p>Find us on social</p>
+    <div class="icons">
+        <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-instagram"></i></a>
+        <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-linkedin"></i></a>
+        
+    </div>
+    <a class="footer-link"><p>made with <i class="fa fa-heart-o"></i> by Valeria</p></a>
+</section>    
+
+  
+<!----JavaScript for toggle menu---->
+<script>
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu() {
+        navLinks.style.right = "0";
+    }
+
+    function hideMenu() {
+        navLinks.style.right = "-200px";
+    }
+</script>  
+    
+</body>

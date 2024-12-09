@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Components\Pages\Home.razor.css" />
+    <Content Include="Components\Pages\css\styles.css" />
     <Content Include="Utilities\Common.cs" />
   </ItemGroup>
 

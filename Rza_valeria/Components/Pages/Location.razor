@@ -1,0 +1,98 @@
+﻿@page "/location"
+
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="/"><img class="newlogo" src="images/logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/login">SIGN-IN</a></li>
+                    <li><a href="/register">SIGN-UP</a></li>
+                    <li><a href="/bookings">BOOK</a></li>
+                    <li><a href="/tickets">TICKETS</a></li>
+                    <li><a href="/exploreZoo">EDUCATIONAL VISITS</a></li>
+                    <li><a href="/location">LOCATION</a></li>
+                    <li><a href="/reviews">REVIEWS</a></li>
+                </ul>
+            </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+
+    </section>
+
+<section class="location">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4983.337792670222!2d-1.1046110508580578!3d51.35399883735928!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48769fcda10567f3%3A0xf8f5894e379a5334!2sSilchester%2C%20Reading!5e0!3m2!1sen!2suk!4v1703152596539!5m2!1sen!2suk" 
+    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
+
+
+<section class="blog-content">
+    <div class="row">
+    <div class="blog-left">
+        <img src="images/outsideofhotel.jpg">
+        <h2>More About Our Location</h2>
+        <p>Salchester Arms, centrally located, seamlessly blends modern design with classic elegance. Guests are treated to breathtaking views of the city skyline and nearby landmarks, enhancing the overall experience. The hotel's strategic location provides easy access to charming cafes, trendy boutiques, and cultural attractions. Salchester Arms promises a memorable stay, offering a perfect combination of luxury and convenience in the heart of the city.</p>
+        <br>
+    </div>
+        
+    <div class="blog-right">
+            <h3>Information:</h3>
+            <div>
+                <span>Located in the countryside near the town of Salchester in the south of England</span>
+                <span>&#127976</span>
+            </div>
+            <div>
+                <span>Holly Ln, Silchester, Reading RG7 2PN</span>
+                <span>&#128205</span>
+            </div>
+            <div>
+                <span>8.1km from the beach</span>
+                <span>&#127965</span>
+            </div>
+            <div>
+                <span>82km from London centre</span>
+                <span>&#128205</span>
+            </div>
+            <div>
+                <span>Approximate transfer time 1 hour 30 minutes</span>
+                <span>&#128645</span>
+            </div>
+        </div> 
+    </div>
+</section>
+    
+<!-------- footer ---------->
+
+<section class="footer">
+    <h4>About Us</h4>
+    <p> Prefer to speak to one of our expert holiday advisors?</p>
+    <p>Give us a call</p>
+    <p>07482 811599</p>          
+    <p>Find us on social</p>
+    <div class="icons">
+        <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-facebook"></i></a>
+        <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-twitter"></i></a>
+        <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-instagram"></i></a>
+        <a href="https://www.youtube.com/c/EasyTutorialsVideo?sub_confirmation=1"><i class="fa fa-linkedin"></i></a>  
+    </div>
+    <a class="footer-link"><p>made with <i class="fa fa-heart-o"></i> by Valeria</p></a>
+</section>    
+
+  
+  
+<!----JavaScript for toggle menu---->
+<script>
+    var navLinks = document.getElementById("navLinks");
+
+    function showMenu() {
+        navLinks.style.right = "0";
+    }
+
+    function hideMenu() {
+        navLinks.style.right = "-200px";
+    }
+</script> 
+    
+</body>

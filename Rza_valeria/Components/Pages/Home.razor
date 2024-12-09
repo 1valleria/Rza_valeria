@@ -10,39 +10,33 @@
 @inherits LayoutComponentBase
 
 
-
-
-
-<title>Ridget Zoo Adventures Test</title>
-<link rel="stylesheet" href="/app.css">
-
-
 <body> 
     <section class="header">
         
         <nav>
-            <a href="/"><img class="newlogo" src="images/newlogo.png"></a>
+            <a href="/"><img class="newlogo" src="images/logo.png"></a>
             <div class="nav-links" id="navLinks">  
-                <i> class="fa fa-close" @onclick="hideMenu()"></i>
+                <i class="fa fa-close" onclick="hideMenu()"></i>
                 <ul> 
                     <li><a href="/">HOME</a></li>
-                    <li><a href="/login">LOGIN</a></li>
-                    <li><a href="Facilities.html">SIGN-UP</a></li>
-                    <li><a href="Location.html">LOCATION</a></li>
-                    <li><a href="Reviews.html">REVIEWS</a></li>
+                    <li><a href="/login">SIGN-IN</a></li>
+                    <li><a href="/register">SIGN-UP</a></li>  
+                    <li><a href="/bookings">BOOK</a></li>
+                    <li><a href="/tickets">TICKETS</a></li>
+                    <li><a href="/exploreZoo">EDUCATIONAL VISITS</a></li>
+                    <li><a href="/location">LOCATION</a></li>
+                    <li><a href="/reviews">REVIEWS</a></li>
                 </ul>
             </div>
-            <i> class="fa fa-bars" onclick="showMenu()"></i>
-            
+            <i class="fa fa-bars" onclick="showMenu()"></i>           
         </nav>
         
         <div class="text-box">
-            <h1>Ridget Zoo Adventures</h1>
+            <h1>Ridget Zoo Adventures - Your Wildest Dream </h1>
             <p>Explore, Discover, and Connect with Nature's Most Amazing Creatures</p>
-            <p>- Inspiring Conservation and Adventure for All Ages!</p>
+            @* <p>- Inspiring Conservation and Adventure for All Ages!</p> *@
             <p>Scroll down for more content about the zoo!</p>
             <a href="/exploreZoo" class="hero-btn">Explore Our Zoo</a>
-            <a href="/login" class="fa fa-close" @onclick="hideMenu()">LOGIN</a>
         </div>
     </section>
     
@@ -182,7 +176,7 @@
 <section class="cta">
 
        <h1>Book Early, Stay Late<br>Your Next Adventure Awaits!</h1>
-       <a href="rooms.html"  class="hero-btn">BOOK YOUR ROOM</a>
+       <a href="/bookings"  class="hero-btn">BOOK YOUR ROOM</a>
     
 </section>    
  
@@ -222,7 +216,7 @@
 
 
 
-@if (UserSession.UserId == 0)
+@* @if (UserSession.UserId == 0)
 {
     <h1>Welcome to RZA!</h1>
     <h1>You need to log in!</h1>
@@ -234,7 +228,7 @@ else
     <h1>your userid is @UserSession.UserId</h1>
     <h1>Hello @customerName, Welcome back to RZA!</h1>
     <button @onclick=@Modify>Change your password</button>
-}
+} *@
 @code {
     private bool dialogShown = false;
     private string? customerName;

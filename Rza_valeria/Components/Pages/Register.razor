@@ -9,14 +9,84 @@
 @inject UserSession UserSession
 
 
-<h3>Register New User</h3>
+<body>
+    <section class="sub-header">
+        <nav>
+            <a href="/"><img class="newlogo" src="images/logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-close" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="/">HOME</a></li>
+                    <li><a href="/login">SIGN-IN</a></li>
+                    <li><a href="/register">SIGN-UP</a></li>
+                    <li><a href="/bookings">BOOK</a></li>
+                    <li><a href="/tickets">TICKETS</a></li>
+                    <li><a href="/exploreZoo">EDUCATIONAL VISITS</a></li>
+                    <li><a href="/location">LOCATION</a></li>
+                    <li><a href="/reviews">REVIEWS</a></li>
+                </ul>
+            </div>
+                <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+
+    </section>
 
 
-<EditForm Model="newCustomer" OnValidSubmit="HandleValidSubmit" FormName="testForm">
+    <main>
+        <div class="content">
+            <div class="form-container">
+                <h1>Register</h1>
+                <EditForm Model="newCustomer" OnValidSubmit="HandleValidSubmit" FormName="testForm">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                @* <form action="#" method="POST"> *@
+                    <div>
+                        <label>Username:</label>
+                        <InputText @bind-Value="newCustomer.Username" />
+                    </div>
+                    <div>
+                        <label>First Name:</label>
+                        <InputText @bind-Value="newCustomer.FirstName" />
+                    </div>
+                    <div>
+                        <label>Last Name:</label>
+                        <InputText @bind-Value="newCustomer.LastName" />
+                    </div>
+                    <div>
+                        <label>Email Address:</label>
+                        <InputText @bind-Value="newCustomer.Email" />
+                    </div>
+                    <div>
+                        <label>Password:</label>
+                        <InputText @bind-Value="password" type="password" />
+                    </div>
+                    @* <label for="name">Name</label>
+                    <input type="text" name="name" required>
+
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+
+                    <label for="dob">Date of Birth</label>
+                    <select id="dob" name="dob">
+                        <option value="">Select</option>
+                        <!-- Add DOB options here -->
+                    </select> *@
+                    <button type="submit" class="btn">Sign Up</button>
+                </EditForm>
+                @* </form> *@
+            </div>
+        </div>
+    </main>
+</body>
+
+@*<EditForm Model="newCustomer" OnValidSubmit="HandleValidSubmit" FormName="testForm">
     <DataAnnotationsValidator />
     <ValidationSummary />
 
-    <div>
+     <div>
         <label>Username:</label>
         <InputText @bind-Value="newCustomer.Username" />
     </div>
@@ -44,7 +114,7 @@
         <label style="color:red">@message</label>
     </div>
     <button type="submit">Register</button>
-</EditForm>
+</EditForm> *@
 
 @code {
     private Customer newCustomer = new Customer();
@@ -84,4 +154,4 @@
             NavigationManager.NavigateTo("");
         }
     }
-}
+} 
